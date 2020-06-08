@@ -35,7 +35,6 @@ module.exports = merge(common, {
             context: 'src',
             quiet: true,
             emitErrors: true,
-            files: '**/*.css',
         }),
     ],
     module: {
@@ -45,7 +44,7 @@ module.exports = merge(common, {
                 include: Path.resolve(__dirname, '../src'),
                 loader: {
                     loader: 'babel-loader',
-                    options: babelOptions('@babel/preset-react'),
+                    options: { presets: ['@babel/preset-env', '@babel/preset-react'] },
                 },
             },
             {
@@ -65,12 +64,20 @@ module.exports = merge(common, {
             },
 
             {
-                test: /\.s[ac]ss$/,
-                use: [MiniCssExtractPlugin.loader, 'sass-loader?sourceMap=true'],
+                test: /\.css$/i,
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            reloadAll: true,
+                        },
+                    },
+                    'css-loader?sourceMap=true',
+                ],
             },
             {
-                test: /\.css$/i,
-                use: [MiniCssExtractPlugin.loader, 'css-loader?sourceMap=true'],
+                test: /\.s[ac]ss$/,
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
             },
 
             {

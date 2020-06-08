@@ -5,7 +5,8 @@
       "color-hex-case": "upper",
       "color-hex-length": "long",
       "at-rule-no-unknown": null,
-      "indentation": 4
+      "indentation": 4,
+      "no-missing-end-of-source-newline":null,
     }
   }
   

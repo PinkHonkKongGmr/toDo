@@ -28,7 +28,7 @@ module.exports = merge(common, {
                 exclude: /node_modules/,
                 loader: {
                     loader: 'babel-loader',
-                    options: babelOptions('@babel/preset-react'),
+                    options: { presets: ['@babel/preset-env', '@babel/preset-react'] },
                 },
             },
             {
